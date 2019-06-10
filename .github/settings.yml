@@ -1,0 +1,100 @@
+repository:
+  private: true
+  has_issues: true
+  has_wiki: false
+  has_downloads: false
+  default_branch: master
+  allow_squash_merge: true
+  allow_merge_commit: true
+  name: toggl-lib
+  description: A simple toggl library
+labels:
+  - name: 'Status: Blocked'
+    color: e2002a
+    description: An issued blocked
+  - name: 'Status: On Hold'
+    color: c0d2da
+    description: the tasks that we will not do until further notice
+  - name: 'Type: Bug'
+    color: CC0000
+    description: An issue with the system bug
+  - name: 'Type: Enhancement'
+    color: 83b8e8
+    description: An issue to enhancement the system ⚙️
+  - name: 'Type: Maintenance'
+    color: fcc73a
+    description: An issue to maintenance the system.
+  - name: 'Type: Analysis'
+    color: cd237b
+    description: An issue to maintenance the system.
+  - name: 'Type: Feature'
+    color: '336699'
+    description: New functionality.
+  - name: 'Type: Discussion'
+    color: ddd8cc
+    description: 'we have not reached a consensus there, maybe you can contribute ?'
+  - name: 'Type: Epic'
+    color: 74b566
+    description: is an issue that can lead to several PRs and should be broken down
+  - name: 'Priority: Critical'
+    color: e2002a
+    description: Critical priority tasks that should be done ASAP
+  - name: 'Priority: High'
+    color: ec5b30
+    description: High priority tasks that can be done when there is no critical
+  - name: 'Priority: Medium'
+    color: fcc73a
+    description: medium priority tasks
+  - name: 'Priority: Low'
+    color: 009922
+    description: low priority tasks that can be done when there is no medium priority tasks
+  - name: 'Estimate: 1h'
+    color: bfe5c1
+    description: Estimate 1hour
+  - name: 'Estimate: 2h'
+    color: bfe5c1
+    description: Estimate 2 hours
+  - name: 'Estimate: 3h'
+    color: bfe5c1
+    description: Estimate 3 hours
+  - name: 'Estimate: 5h'
+    color: bfe5c1
+    description: Estimate 5 hours
+  - name: 'Estimate: 8h'
+    color: bfe5c1
+    description: Estimate 8 hours
+  - name: 'Estimate: 13h'
+    color: bfe5c1
+    description: Estimate 13 hours
+  - name: 'Estimate: 20h'
+    color: bfe5c1
+    description: Estimate 20 hours
+  - name: 'Estimate: 40h'
+    color: bfe5c1
+    description: Estimate 40 hours
+  - name: 'Client: Foundation'
+    color: 3748dd
+    description: Foundation
+branches:
+  - name: master
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: true
+        require_code_owner_reviews: true
+        dismissal_restrictions: {}
+      required_status_checks:
+        strict: true
+        contexts: []
+      enforce_admins: false
+  - name: develop
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: true
+        require_code_owner_reviews: true
+        dismissal_restrictions: {}
+      required_status_checks:
+        strict: true
+        contexts: []
+      enforce_admins: false

@@ -1,0 +1,23 @@
+{
+  "name": "toggl-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulanatol/toggl-lib.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raulanatol/toggl-lib/issues"
+  },
+  "homepage": "https://github.com/raulanatol/toggl-lib#readme",
+  "devDependencies": {
+    "github-release-notes": "^0.17.0"
+  }
+}
