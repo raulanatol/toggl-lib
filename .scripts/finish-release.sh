@@ -13,9 +13,7 @@ if [ $# != 1 ]; then
   error "Please specify the version number: npm run finish-release 10.0.1"
 fi
 
-npm run lint
 npm run test
-npm run clean
 npm run build
 
 NEW_VERSION=$1
