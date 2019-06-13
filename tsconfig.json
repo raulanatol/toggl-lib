@@ -1,11 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "moduleResolution": "node",
     "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": ".dts"
-  }
+    "declarationDir": ".dts",
+    "sourceMap": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "files": [
+    "./src/index.ts"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ]
 }

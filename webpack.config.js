@@ -1,35 +1,23 @@
-const TerserPlugin = require('terser-webpack-plugin');
-
 module.exports = {
   mode: 'production',
   entry: {
     'index': './src/index.ts'
   },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
+  },
   module: {
     rules: [
-      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ }
-    ]
-  },
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        extractComments: true,
-        parallel: true
-      })
+      { test: /\.ts$/, use: 'ts-loader' }
     ]
   },
   output: {
-    filename: 'index.js',
-    libraryTarget: 'umd',
-    path: __dirname + '/dist'
+    library: 'true',
+    libraryTarget: 'commonjs2'
   },
   plugins: [
     new DtsBundlePlugin()
-  ],
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js']
-  }
+  ]
 };
 
 function DtsBundlePlugin() {} // tslint:disable-line
@@ -39,7 +27,7 @@ DtsBundlePlugin.prototype.apply = function(compiler) {
     const dts = require('dts-bundle');
     dts.bundle({
       main: '.dts/index.d.ts',
-      name: '@nologis/maps',
+      name: 'toggle-lib',
       out: '../dist/index.d.ts',
       outputAsModuleFolder: true,
       removeSource: true
