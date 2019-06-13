@@ -24,7 +24,25 @@ module.exports = {
     libraryTarget: 'umd',
     path: __dirname + '/dist'
   },
+  plugins: [
+    new DtsBundlePlugin()
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   }
+};
+
+function DtsBundlePlugin() {} // tslint:disable-line
+
+DtsBundlePlugin.prototype.apply = function(compiler) {
+  compiler.hooks.afterEmit.tap('DtsBundlePlugin', function() {
+    const dts = require('dts-bundle');
+    dts.bundle({
+      main: '.dts/index.d.ts',
+      name: '@nologis/maps',
+      out: '../dist/index.d.ts',
+      outputAsModuleFolder: true,
+      removeSource: true
+    });
+  });
 };
