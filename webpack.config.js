@@ -17,7 +17,8 @@ module.exports = {
   },
   plugins: [
     new DtsBundlePlugin()
-  ]
+  ],
+  externals: ['axios']
 };
 
 function DtsBundlePlugin() {} // tslint:disable-line
