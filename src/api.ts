@@ -23,7 +23,7 @@ const base = token => workspace => (endpoint: string, params?: unknown) => {
   return axios.request(config).catch(console.error);
 };
 
-const totalHours = summary =>  summary.totals[summary.totals.length - 1];
+const totalHours = summary => summary.totals[summary.totals.length - 1];
 
 const toProjectSummary = (summary): SummaryByProject => ({
   client: summary.title.client && summary.title.client.toUpperCase(),
@@ -35,6 +35,6 @@ const parseSummaryByProjects = result => result.data.data.map(toProjectSummary);
 
 export const api = (token, workspace) => ({
   summaryByProjects: (sinceDate) => base(token)(workspace)('reports/api/v2/weekly?grouping=projects', {
-    since: sinceDate,
+    since: sinceDate
   }).then(parseSummaryByProjects)
 });
