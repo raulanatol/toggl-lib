@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { humanizeMilliseconds } from './utils';
 import { SummaryByProject } from './models';
 
 const VERSION = require('../package.json').version;
 
-const base = token => workspace => sinceDate => untilDate =>  endpoint => {
+const base = token => workspace => (endpoint: string, params?: unknown) => {
   const config: AxiosRequestConfig = {
     url: `https://toggl.com/${endpoint}`,
     method: 'GET',
@@ -18,21 +17,24 @@ const base = token => workspace => sinceDate => untilDate =>  endpoint => {
     params: {
       user_agent: `toggl-lib-${VERSION}`,
       workspace_id: workspace,
-      since: sinceDate,
-      until: untilDate
+      ...params
     }
   };
   return axios.request(config).catch(console.error);
 };
 
+const totalHours = summary =>  summary.totals[summary.totals.length - 1];
+
 const toProjectSummary = (summary): SummaryByProject => ({
   client: summary.title.client && summary.title.client.toUpperCase(),
   project: summary.title.project && summary.title.project.toUpperCase(),
-  time: summary.totals[summary.totals.length -1]
+  time: totalHours(summary)
 });
 
 const parseSummaryByProjects = result => result.data.data.map(toProjectSummary);
 
-export const api = (token, workspace, sinceDate, untilDate) => ({
-  summaryByProjects: base(token)(workspace)(sinceDate)(untilDate)('reports/api/v2/weekly?grouping=projects').then(parseSummaryByProjects)
+export const api = (token, workspace) => ({
+  summaryByProjects: (sinceDate) => base(token)(workspace)('reports/api/v2/weekly?grouping=projects', {
+    since: sinceDate,
+  }).then(parseSummaryByProjects)
 });
