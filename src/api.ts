@@ -26,16 +26,15 @@ const base = token => workspace => (endpoint: string, params?: unknown) => {
 const totalHours = summary => summary.totals[summary.totals.length - 1];
 
 const toProjectSummary = (summary): SummaryByProject => ({
-  client: summary.title.client.toUpperCase(),
-  project: summary.title.project.toUpperCase(),
+  client: summary.title.client && summary.title.client.toUpperCase(),
+  project: summary.title.project && summary.title.project.toUpperCase(),
   time: totalHours(summary)
 });
 
 const parseSummaryByProjects = result => result.data.data.map(toProjectSummary);
 
 export const api = (token, workspace) => ({
-  summaryByProjects: (sinceDate, untilDate) => base(token)(workspace)('reports/api/v2/weekly?grouping=projects', {
-    sinceDate,
-    untilDate
+  summaryByProjects: (sinceDate) => base(token)(workspace)('reports/api/v2/weekly?grouping=projects', {
+    since: sinceDate
   }).then(parseSummaryByProjects)
 });
