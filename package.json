@@ -28,7 +28,7 @@
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "@types/jest": "^25.1.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "dts-bundle": "^0.7.3",
@@ -43,7 +43,7 @@
     "webpack-cli": "^3.3.11"
   },
   "peerDependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "jest": {
     "preset": "ts-jest"
